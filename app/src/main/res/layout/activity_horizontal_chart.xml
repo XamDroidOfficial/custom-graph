@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        tools:context=".HorizontalChartActivity">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/bar_chart_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/x_axis_view"
+            android:clipToPadding="false" />
+
+        <View
+            android:id="@+id/x_axis_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@id/x_axis_text_view_container_linear_layout"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:id="@+id/x_axis_text_view_container_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal" />
+
+
+    </RelativeLayout>
+</layout>
