@@ -17,7 +17,7 @@ class HorizontalChartActivity : AppCompatActivity() {
     private var granularity = 0
     private var maxValue = 0
     private var maxValueOnXAxis = 0
-    private var pointList = listOf(5, 8, 12, 18, 2, 3, 45, 5, 78, 65, 43, 66, 12)
+    private var pointList = listOf(0, -8, -3,-2,-1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,20 +45,12 @@ class HorizontalChartActivity : AppCompatActivity() {
                 maxValueOnXAxis = maxValue + (5 - (maxValue % 5))
                 granularity = maxValueOnXAxis / 5
             }
-            maxValue > 8 -> {
+            maxValue == 10 -> {
                 maxValueOnXAxis = 10
                 granularity = 2
             }
-            maxValue > 6 -> {
-                maxValueOnXAxis = 8
-                granularity = 2
-            }
-            maxValue > 4 -> {
-                maxValueOnXAxis = 6
-                granularity = 2
-            }
-            maxValue > 2 -> {
-                maxValueOnXAxis = 4
+            maxValue in 3..9 -> {
+                maxValueOnXAxis = if (maxValue % 2 == 0) maxValue + 2 else maxValue + 1
                 granularity = 2
             }
             maxValue > 1 -> {
