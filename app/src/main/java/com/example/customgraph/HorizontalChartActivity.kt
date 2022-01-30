@@ -6,7 +6,6 @@ import android.widget.LinearLayout
 import android.widget.TableLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.customgraph.databinding.ActivityHorizontalChartBinding
 
 class HorizontalChartActivity : AppCompatActivity() {
@@ -17,7 +16,7 @@ class HorizontalChartActivity : AppCompatActivity() {
     private var granularity = 0
     private var maxValue = 0
     private var maxValueOnXAxis = 0
-    private var pointList = listOf(0, 8, 24, 32, 65, 23, 34, 5, 2, 8, 70)
+    private var pointList = listOf(0, 8, 24, 32, 65, 23, 34, 5, 2, 8, 75, 16)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +24,7 @@ class HorizontalChartActivity : AppCompatActivity() {
         setContentView(binding.root)
         initViews()
         getGranularity()
-        addTextViewForXAxis()
+        addTextViewForXAxis(maxValue)
         setGraphRecyclerViewAdapter(maxValueOnXAxis)
     }
 
@@ -33,12 +32,19 @@ class HorizontalChartActivity : AppCompatActivity() {
         linearlayout = binding.xAxisTextViewContainerLinearLayout
     }
 
+    /*
+        Step 1: Find the max value from the list.
+        Step 2: Calculate the granularity based on the max value.
+    */
     private fun getGranularity() {
         maxValue = pointList.maxOrNull() ?: 0
         calculateGranularity(maxValue)
     }
 
-    //This method will calculate the granularity(interval) between two points of X-Axis.
+    /*
+        This method will calculate the granularity(interval) between two points of X-Axis
+        and max value of the x-axis.
+     */
     private fun calculateGranularity(maxValue: Int) {
         when {
             maxValue > 10 -> {
@@ -61,7 +67,7 @@ class HorizontalChartActivity : AppCompatActivity() {
     }
 
     //This method will generate the required numbers of text-view for x-axis.
-    private fun addTextViewForXAxis() {
+    private fun addTextViewForXAxis(maxValue: Int) {
         when {
             maxValue > 10 -> createTextView(5)
             maxValue > 8 -> createTextView(5)
@@ -99,7 +105,6 @@ class HorizontalChartActivity : AppCompatActivity() {
 
     private fun setGraphRecyclerViewAdapter(maxValueOnXAxis: Int) {
         adapter = HorizontalBarChartAdapter(pointList, maxValueOnXAxis)
-        binding.barChartRecyclerview.layoutManager = LinearLayoutManager(this)
         binding.barChartRecyclerview.adapter = adapter
     }
 }

@@ -15,7 +15,7 @@ class HorizontalBarChartAdapter(
 
     private var parentWidth: Int = 0
     private var viewWidthInPx: Int = 0
-    private var marginInDp: Float = 16f
+    private var marginInDp: Float = 24f
     private var marginInPx: Float = 0f
 
     override fun onCreateViewHolder(
